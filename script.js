@@ -141,7 +141,7 @@ async function handleParse() {
 
 async function getAwemeId(url) {
     try {
-        const response = await fetch(`http://64.227.89.151/api/douyin/web/get_aweme_id?url=${encodeURIComponent(url)}`);
+        const response = await fetch(`/api/get_aweme_id?url=${encodeURIComponent(url)}`);
         const data = await response.json();
         
         if (data.code === 200) {
@@ -157,7 +157,7 @@ async function getAwemeId(url) {
 
 async function getVideoInfo(awemeId) {
     try {
-        const response = await fetch(`http://64.227.89.151/api/douyin/web/fetch_one_video?aweme_id=${awemeId}`);
+        const response = await fetch(`/api/fetch_one_video?aweme_id=${awemeId}`);
         const data = await response.json();
         
         if (data.code === 200 && data.data && data.data.aweme_detail) {
