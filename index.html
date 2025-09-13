@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抖音去水印下载器</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Password Modal -->
+        <div id="passwordModal" class="modal">
+            <div class="modal-content">
+                <h2><i class="fas fa-lock"></i> 访问验证</h2>
+                <p>请输入访问密码：</p>
+                <input type="password" id="passwordInput" placeholder="请输入密码" maxlength="6">
+                <button id="passwordSubmit" class="btn btn-primary">
+                    <i class="fas fa-check"></i> 确认
+                </button>
+                <div id="passwordError" class="error-message"></div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div id="mainContent" class="main-content hidden">
+            <header class="header">
+                <h1><i class="fas fa-download"></i> 抖音去水印下载器</h1>
+                <p>支持抖音视频无水印下载，简单快捷</p>
+            </header>
+
+            <div class="input-section">
+                <div class="input-group">
+                    <label for="urlInput">
+                        <i class="fas fa-link"></i> 粘贴分享链接
+                    </label>
+                    <textarea 
+                        id="urlInput" 
+                        placeholder="请粘贴抖音分享链接，支持包含文字描述的完整分享内容..."
+                        rows="4"
+                    ></textarea>
+                </div>
+                
+                <button id="parseBtn" class="btn btn-primary btn-large">
+                    <i class="fas fa-magic"></i> 开始解析
+                </button>
+            </div>
+
+            <!-- Loading -->
+            <div id="loading" class="loading hidden">
+                <div class="spinner"></div>
+                <p>正在解析视频信息...</p>
+            </div>
+
+            <!-- Results -->
+            <div id="results" class="results hidden">
+                <div class="result-card">
+                    <h3><i class="fas fa-video"></i> 视频信息</h3>
+                    
+                    <div class="info-item">
+                        <label>标题：</label>
+                        <div id="videoTitle" class="video-title"></div>
+                    </div>
+
+                    <div class="info-item">
+                        <label>封面预览：</label>
+                        <div class="cover-preview">
+                            <img id="coverImage" src="" alt="视频封面" />
+                        </div>
+                    </div>
+
+                    <div class="download-buttons">
+                        <button id="downloadVideo" class="btn btn-success">
+                            <i class="fas fa-download"></i> 下载视频
+                        </button>
+                        <button id="downloadCover" class="btn btn-info">
+                            <i class="fas fa-image"></i> 下载封面
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Error Message -->
+            <div id="errorMessage" class="error-message hidden"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
