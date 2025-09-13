@@ -1,13 +1,8 @@
 // Global variables
 let currentVideoData = null;
-const PASSWORD = '123456';
 
 // DOM elements
-const passwordModal = document.getElementById('passwordModal');
 const mainContent = document.getElementById('mainContent');
-const passwordInput = document.getElementById('passwordInput');
-const passwordSubmit = document.getElementById('passwordSubmit');
-const passwordError = document.getElementById('passwordError');
 const urlInput = document.getElementById('urlInput');
 const parseBtn = document.getElementById('parseBtn');
 const loading = document.getElementById('loading');
@@ -20,26 +15,14 @@ const downloadCoverBtn = document.getElementById('downloadCover');
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
-    // Check if user is already authenticated
-    if (localStorage.getItem('authenticated') === 'true') {
-        showMainContent();
-    } else {
-        showPasswordModal();
-    }
+    // Show main content immediately (no authentication required)
+    showMainContent();
     
     // Set up event listeners
     setupEventListeners();
 });
 
 function setupEventListeners() {
-    // Password authentication
-    passwordSubmit.addEventListener('click', handlePasswordSubmit);
-    passwordInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            handlePasswordSubmit();
-        }
-    });
-    
     // Parse button
     parseBtn.addEventListener('click', handleParse);
     
@@ -48,30 +31,8 @@ function setupEventListeners() {
     downloadCoverBtn.addEventListener('click', downloadCover);
 }
 
-function showPasswordModal() {
-    passwordModal.style.display = 'flex';
-    mainContent.classList.add('hidden');
-    passwordInput.focus();
-}
-
 function showMainContent() {
-    passwordModal.style.display = 'none';
     mainContent.classList.remove('hidden');
-}
-
-function handlePasswordSubmit() {
-    const inputPassword = passwordInput.value.trim();
-    
-    if (inputPassword === PASSWORD) {
-        localStorage.setItem('authenticated', 'true');
-        showMainContent();
-        passwordError.textContent = '';
-        passwordInput.value = '';
-    } else {
-        passwordError.textContent = '密码错误，请重新输入';
-        passwordInput.value = '';
-        passwordInput.focus();
-    }
 }
 
 function extractUrl(text) {
