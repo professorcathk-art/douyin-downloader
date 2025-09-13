@@ -182,9 +182,12 @@ function downloadCover() {
 
 function downloadFile(url, filename) {
     try {
+        // Use our proxy endpoint to avoid CORS issues
+        const proxyUrl = `/api/download?url=${encodeURIComponent(url)}&filename=${encodeURIComponent(filename)}`;
+        
         // Create a temporary link element
         const link = document.createElement('a');
-        link.href = url;
+        link.href = proxyUrl;
         link.download = filename;
         link.target = '_blank';
         
